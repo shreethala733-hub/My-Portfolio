@@ -104,9 +104,10 @@ Social Media:
 
 
 """
+
 @app.route('/')
 def home():
-    return render_template("portfolio.html")
+    return send_file("portfolio.html")  
 --------------------------------------
 # 3. API ROUTE: This is where the ML concept is applied!
 # ----------------------------------------------------------------------
@@ -232,5 +233,6 @@ if __name__ == "__main__":
     load_dotenv()
 
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+
 
 
