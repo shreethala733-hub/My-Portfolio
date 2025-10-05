@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_file, render_template
 from flask_cors import CORS
 from google import genai
 from google.genai import types
@@ -104,11 +104,10 @@ Social Media:
 
 
 """
-
 @app.route('/')
 def home():
-    return "Hello, Portfolio!"
-# ----------------------------------------------------------------------
+    return render_template("portfolio.html")
+--------------------------------------
 # 3. API ROUTE: This is where the ML concept is applied!
 # ----------------------------------------------------------------------
 
@@ -233,4 +232,5 @@ if __name__ == "__main__":
     load_dotenv()
 
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+
 
