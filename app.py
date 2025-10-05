@@ -108,7 +108,7 @@ Social Media:
 @app.route('/')
 def home():
     return send_file("portfolio.html")  
---------------------------------------
+#--------------------------------------
 # 3. API ROUTE: This is where the ML concept is applied!
 # ----------------------------------------------------------------------
 
@@ -173,11 +173,11 @@ def send_log_email(name, email, timestamp):
     msg.set_content(f"""
     Lathashree's CV has been viewed!
 
-    --------------------------------------
+    #--------------------------------------
     Name: {name}
     Email: {email}
     Time: {timestamp}
-    --------------------------------------
+    #--------------------------------------
     
     This is a confirmed lead from your portfolio.
     """)
@@ -233,6 +233,7 @@ if __name__ == "__main__":
     load_dotenv()
 
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+
 
 
 
