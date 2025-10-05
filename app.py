@@ -105,6 +105,9 @@ Social Media:
 
 """
 
+@app.route('/')
+def home():
+    return "Hello, Portfolio!"
 # ----------------------------------------------------------------------
 # 3. API ROUTE: This is where the ML concept is applied!
 # ----------------------------------------------------------------------
@@ -228,4 +231,5 @@ if __name__ == "__main__":
     from dotenv import load_dotenv
     import os
     load_dotenv()
+
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
