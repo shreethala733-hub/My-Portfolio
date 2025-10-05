@@ -1,0 +1,2083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lathashree - Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Project card hover effect styles */
+    .project-card {
+        position: relative;
+        /* DEEP NAVY GRADIENT: #0F172A is dark navy, #1E293B is slightly lighter navy */
+        background: linear-gradient(145deg, #0F172A, #1E293B); 
+        border-radius: 0.75rem;
+        overflow: hidden;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+        transition: all 0.4s ease;
+        height: 100%;
+        border: 1px solid transparent; /* Prepare for border hover */
+    }
+
+    /* LIGHT BLUE GLOW on hover for the accent */
+    .project-card:hover {
+        box-shadow: 0 0 40px -10px rgba(59, 130, 246, 0.5); /* Blue-500 glow */
+        border-color: #3B82F6; /* Blue-500 border */
+        transform: translateY(-5px);
+    }
+
+    .project-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        transition: all 0.5s ease;
+    }
+
+    .project-content {
+        padding: 1.5rem;
+        position: relative;
+        z-index: 2;
+        background: linear-gradient(to top, #0F172A 50%, transparent); /* Updated gradient to Navy */
+        transition: all 0.4s ease;
+    }
+    
+    .project-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(15, 23, 42, 0.95); /* Deep Navy Background */
+        padding: 1.5rem;
+        transform: translateY(100%);
+        transition: transform 0.4s ease;
+        z-index: 3;
+        backdrop-filter: blur(10px);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .project-card:hover img {
+        transform: scale(1.05);
+    }
+
+    .project-card:hover .project-info {
+        transform: translateY(0);
+    }
+
+    .project-card:hover .project-content {
+        opacity: 0;
+    }
+
+    .tech-tag {
+        display: inline-block;
+        /* New Light Blue Gradient */
+        background: linear-gradient(90deg, #38bdf8, #2563eb); 
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .view-project-btn {
+        display: inline-block;
+        /* New Light Blue Gradient */
+        background: linear-gradient(90deg, #38bdf8, #2563eb);
+        color: white;
+        padding: 0.5rem 1.5rem;
+        border-radius: 9999px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        margin-top: 1rem;
+    }
+
+    .view-project-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(56, 189, 248, 0.4); /* Light Blue Shadow */
+    }
+    /* Custom CSS for the glowing circle effect */
+    .glowing-circle-container {
+        position: relative;
+        border-radius: 50%;
+        padding: 5px;
+        /* Updated gradient: Light Blue, Deep Blue, Light Blue */
+        background: linear-gradient(45deg, #3b82f6, #0f172a, #38bdf8, #3b82f6); 
+        background-size: 400% 400%;
+        animation: gradient-animation 15s ease infinite;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        box-shadow: 0 0 30px rgba(59, 130, 246, 0.9), 0 0 60px rgba(56, 189, 248, 0.7); /* Blue Glow */
+    }
+
+    .glowing-circle-container img {
+        border-radius: 50%;
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(10%);
+    }
+
+    @keyframes gradient-animation {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* Ensure smooth scrolling for anchor links */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Custom font for a modern look */
+    body {
+        font-family: 'Inter', sans-serif;
+        /* Ensure text is always bright white for maximum visibility */
+        color: #f3f4f6 !important; 
+    }
+
+    /* Keyframe animations for Hero section entry/exit effects */
+    @keyframes slideInFromTop {
+        0% { transform: translateY(-50px); opacity: 0; }
+        100% { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes slideInFromLeft {
+        0% { transform: translateX(-50px); opacity: 0; }
+        100% { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideInFromBottom {
+        0% { transform: translateY(50px); opacity: 0; }
+        100% { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes slideInFromRight {
+        0% { transform: translateX(50px); opacity: 0; }
+        100% { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes slideOutToTop {
+        0% { transform: translateY(0); opacity: 1; }
+        100% { transform: translateY(-50px); opacity: 0; }
+    }
+    @keyframes slideOutToLeft {
+        0% { transform: translateX(0); opacity: 1; }
+        100% { transform: translateX(-50px); opacity: 0; }
+    }
+    @keyframes slideOutToBottom {
+        0% { transform: translateY(0); opacity: 1; }
+        100% { transform: translateY(50px); opacity: 0; }
+    }
+    @keyframes slideOutToRight {
+        0% { transform: translateX(0); opacity: 1; }
+        100% { transform: translateX(50px); opacity: 0; }
+    }
+
+    /* Styles for blinking cursor in typewriter effect */
+    .blinking-cursor::after {
+        content: '|';
+        animation: blink-caret .75s step-end infinite;
+        display: inline-block;
+        margin-left: 5px;
+        color: white; /* Ensure cursor is white */
+    }
+
+    @keyframes blink-caret {
+        from, to { border-color: transparent }
+        50% { border-color: white; }
+    }
+
+    /* Base class for all hero animated items - ensures a clean slate */
+    .hero-animated-item {
+        /* No initial opacity or transform here. Handled by JS for precise control. */
+        /* This class simply acts as a marker for JS to target. */
+    }
+
+    /* Specific classes for 'in' animations */
+    .hero-slide-in-top {
+        animation: slideInFromTop 1.0s ease-in-out forwards;
+    }
+    .hero-slide-in-left {
+        animation: slideInFromLeft 1.0s ease-in-out forwards;
+    }
+    .hero-slide-in-bottom {
+        animation: slideInFromBottom 1.0s ease-in-out forwards;
+    }
+    .hero-slide-in-right {
+        animation: slideInFromRight 1.0s ease-in-out forwards;
+    }
+
+    /* Specific classes for 'out' animations */
+    .hero-slide-out-top {
+        animation: slideOutToTop 1.0s ease-in-out forwards;
+    }
+    .hero-slide-out-left {
+        animation: slideOutToLeft 1.0s ease-in-out forwards;
+    }
+    .hero-slide-out-bottom {
+        animation: slideOutToBottom 1.0s ease-in-out forwards;
+    }
+    .hero-slide-out-right {
+        animation: slideOutToRight 1.0s ease-in-out forwards;
+    }
+    
+    /* Skill bar specific CSS */
+    .skill-bar-container {
+        width: 100%;
+        background-color: #374151; /* Gray-700 from Tailwind */
+        border-radius: 9999px; /* Full rounded corners */
+        height: 12px; /* Height of the bar */
+        overflow: hidden; /* Ensures the inner bar stays within rounded corners */
+    }
+
+    .skill-bar-fill {
+        height: 100%;
+        /* Updated Gradient: Light Blue to Deep Blue */
+        background: linear-gradient(90deg, #38bdf8, #2563eb);
+        width: 0%; /* Start at 0 for animation */
+        border-radius: 9999px;
+        transition: width 1.5s ease-out; /* Smooth transition for filling */
+    }
+
+    /* Circular progress bar specific CSS */
+    .circular-progress {
+        position: relative;
+        height: 120px;
+        width: 120px;
+        border-radius: 50%;
+        /* Updated Gradient: Light Blue/Deep Blue */
+        background: conic-gradient(#38bdf8 0deg, #2563eb 0deg, #4b5563 0deg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 1.5s ease;
+    }
+    
+    .circular-progress::before {
+        content: "";
+        position: absolute;
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        background-color: #0f172a; /* Deep Navy Background for inner circle */
+    }
+    
+    .progress-value {
+        position: relative;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #d1d5db;
+    }
+    
+    /* Soft skills section styles */
+    .soft-skill-card {
+        background: linear-gradient(145deg, #0f172a, #1e293b); /* Deep Navy Gradient */
+        border-radius: 1rem;
+        padding: 1.8rem;
+        box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: all 0.4s ease;
+        border: 1px solid rgba(59, 130, 246, 0.1); /* Blue Accent Border */
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+    }
+    
+    .soft-skill-card::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        z-index: -1;
+        /* Updated Gradient: Light Blue/Deep Blue */
+        background: linear-gradient(45deg, #38bdf8, #2563eb, #38bdf8);
+        border-radius: 1rem;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+    
+    .soft-skill-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4);
+    }
+    
+    .soft-skill-card:hover::before {
+        opacity: 0.3;
+    }
+    
+    .skill-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        /* Updated Gradient: Light Blue/Deep Blue */
+        background: linear-gradient(90deg, #38bdf8, #2563eb);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+    
+    .soft-skill-title {
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: #e5e7eb;
+        text-align: center;
+    }
+    
+    .soft-skill-text {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #d1d5db;
+        text-align: center;
+        line-height: 1.6;
+    }
+    
+    @property --progress {
+        syntax: '<angle>';
+        initial-value: 0deg;
+        inherits: false;
+    }
+
+    /* Animation trigger class */
+    .animate-skills {
+        animation: fadeIn 1s forwards;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+      /* Styling for contact form inputs */
+    .contact-input {
+        width: 100%;
+        padding: 1rem 1.25rem;
+        border-radius: 0.5rem;
+        background-color: #1e293b; /* Dark Navy Input */
+        color: #e5e7eb; /* Gray-100 */
+        border: 1px solid #334155; /* Navy Border */
+        outline: none;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .contact-input::placeholder {
+        color: #9ca3af; /* Gray-400 */
+    }
+
+    .contact-input:focus {
+        border-color: #38bdf8; /* Light Blue Focus */
+        box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.5); /* Focus ring */
+    }
+
+    /* Styling for glowing submit button */
+    .glowing-submit-button {
+        /* Updated Gradient: Sky-400 to Blue-600 */
+        background: linear-gradient(90deg, #38bdf8, #2563eb, #38bdf8); 
+        background-size: 200% 200%;
+        color: #ffffff;
+        animation: glowing-button-animation 4s ease infinite;
+        box-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
+        transition: all 0.3s ease;
+    }
+
+    .glowing-submit-button:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 0 25px rgba(56, 189, 248, 0.8);
+    }
+
+    @keyframes glowing-button-animation {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* Styling for contact social icons */
+    .contact-social-icon {
+        width: 48px; /* w-12 */
+        height: 48px; /* h-12 */
+        border-radius: 50%; /* rounded-full */
+        background-color: #1e293b; /* Dark Navy background */
+        border: 2px solid #38bdf8; /* Light Blue border */
+        color: #38bdf8; /* Light Blue color for icon */
+        font-size: 1.5rem; /* text-2xl */
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 0 10px rgba(56, 189, 248, 0.3); /* Subtle glow */
+    }
+
+    .contact-social-icon:hover {
+        background-color: #38bdf8; /* Light Blue background on hover */
+        color: #0f172a; /* Dark Navy text on hover */
+        transform: scale(1.1) rotate(5deg); /* Slight scale and rotate */
+        box-shadow: 0 0 20px rgba(56, 189, 248, 0.7); /* More pronounced glow */
+    }
+     /* Custom styles for the enhanced chatbot */
+    body {
+        background: linear-gradient(135deg, #0f172a, #1e293b);
+        min-height: 100vh;
+        font-family: 'Inter', sans-serif;
+    }
+    
+    .chat-container {
+        transition: all 0.3s ease;
+        /* Updated Glow/Shadow: Light Blue */
+        box-shadow: 0 25px 50px -12px rgba(56, 189, 248, 0.25), 0 0 30px rgba(59, 130, 246, 0.3);
+        border: 2px solid rgba(56, 189, 248, 0.5);
+        background: linear-gradient(145deg, #1e293b, #2d3748);
+    }
+    
+    .chat-message {
+        max-width: 80%;
+        margin-bottom: 1.2rem;
+        animation: fadeIn 0.5s ease;
+    }
+    
+    .user-message {
+        margin-left: auto;
+    }
+    
+    .bot-message {
+        margin-right: auto;
+    }
+    
+   .user-message p {
+        /* Updated Gradient: Light Blue/Deep Blue */
+        background: linear-gradient(90deg, #38bdf8, #2563eb);
+        color: white;
+        border-top-right-radius: 0;
+        box-shadow: 0 4px 6px rgba(56, 189, 248, 0.2);
+    }
+    
+    .bot-message p {
+        background: linear-gradient(145deg, #334155, #475569);
+        color: #e5e7eb;
+        border-top-left-radius: 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-left: 3px solid #38bdf8; /* Light Blue Border */
+    }
+    
+    .suggestion-chip {
+        background: rgba(56, 189, 248, 0.15); /* Light Blue Background */
+        border: 1px solid rgba(56, 189, 248, 0.4); /* Light Blue Border */
+        transition: all 0.3s ease;
+        cursor: pointer;
+        backdrop-filter: blur(10px);
+        color: #d1d5db; /* Ensure chip text is visible */
+    }
+    
+    .suggestion-chip:hover {
+        background: rgba(56, 189, 248, 0.25);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(56, 189, 248, 0.3);
+    }
+    
+    .chat-header {
+        /* Updated Gradient: Light Blue/Deep Blue */
+        background: linear-gradient(90deg, #38bdf8, #2563eb);
+        border-top-left-radius: 0.75rem;
+        border-top-right-radius: 0.75rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7); }
+        70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(56, 189, 248, 0); }
+        100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
+    }
+    
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+    }
+    
+    .pulse {
+        animation: pulse 2s infinite;
+    }
+    
+    .float {
+        animation: float 6s ease-in-out infinite;
+    }
+    
+    .typing-indicator {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        background: rgba(55, 65, 81, 0.8);
+        border-radius: 1rem;
+    }
+    
+    .typing-dot {
+        width: 8px;
+        height: 8px;
+        margin: 0 2px;
+        background: #38bdf8; /* Light Blue Dot */
+        border-radius: 50%;
+        opacity: 0.6;
+        animation: typingAnimation 1.4s infinite ease-in-out;
+    }
+    
+    .typing-dot:nth-child(1) { animation-delay: 0s; }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    
+    @keyframes typingAnimation {
+        0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
+        30% { transform: translateY(-10px); opacity: 1; }
+    }
+    
+    #chat-messages {
+        scrollbar-width: thin;
+        scrollbar-color: #4b5563 #1f2937;
+    }
+    
+    #chat-messages::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    #chat-messages::-webkit-scrollbar-track {
+        background: #1f2937;
+        border-radius: 3px;
+    }
+    
+    #chat-messages::-webkit-scrollbar-thumb {
+        /* Updated Gradient: Light Blue/Deep Blue */
+        background: linear-gradient(to bottom, #38bdf8, #2563eb);
+        border-radius: 3px;
+    }
+    
+    .glow-effect {
+        filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.7)); /* Light Blue Glow */
+    }
+    /* Education Section Styles */
+    .education-card {
+        background: linear-gradient(145deg, #0f172a, #1e293b); /* Deep Navy Gradient */
+        border-radius: 1rem;
+        padding: 2rem;
+        box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.3);
+        transition: all 0.4s ease;
+        border: 1px solid rgba(59, 130, 246, 0.1);
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+    }
+
+    .education-card::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        z-index: -1;
+        /* Updated Gradient: Light Blue/Deep Blue */
+        background: linear-gradient(45deg, #38bdf8, #2563eb, #38bdf8);
+        border-radius: 1rem;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    .education-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4);
+    }
+
+    .education-card:hover::before {
+        opacity: 0.3;
+    }
+
+    .education-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        /* Updated Gradient: Light Blue/Deep Blue */
+        background: linear-gradient(90deg, #38bdf8, #2563eb);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .education-date {
+        display: inline-block;
+        /* Updated Gradient: Light Blue/Deep Blue */
+        background: linear-gradient(90deg, #38bdf8, #2563eb);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .course-tag {
+        display: inline-block;
+        background: rgba(56, 189, 248, 0.1); /* Light Blue Background */
+        color: #38bdf8; /* Light Blue Text */
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+        border: 1px solid rgba(56, 189, 248, 0.3); /* Light Blue Border */
+    }
+
+    /* Timeline style for education */
+    .timeline {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .timeline::after {
+        content: '';
+        position: absolute;
+        width: 6px;
+        /* Updated Gradient: Light Blue/Deep Blue */
+        background: linear-gradient(to bottom, #38bdf8, #2563eb);
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -3px;
+        border-radius: 10px;
+    }
+
+    @media screen and (max-width: 768px) {
+        .timeline::after {
+            left: 31px;
+        }
+    }
+    /* Certifications Section Styles */
+    .certification-card {
+        background: linear-gradient(145deg, #0f172a, #1e293b); /* Deep Navy Gradient */
+        border-radius: 1rem;
+        padding: 2rem;
+        box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.3);
+        transition: all 0.4s ease;
+        border: 1px solid rgba(59, 130, 246, 0.1);
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+    }
+
+    .certification-card::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        z-index: -1;
+        /* Updated Gradient: Light Blue/Deep Blue */
+        background: linear-gradient(45deg, #38bdf8, #2563eb, #38bdf8);
+        border-radius: 1rem;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    .certification-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4);
+    }
+
+    .certification-card:hover::before {
+        opacity: 0.3;
+    }
+
+    .certification-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        /* Updated Gradient: Light Blue/Deep Blue */
+        background: linear-gradient(90deg, #38bdf8, #2563eb);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .certification-date {
+        display: inline-block;
+        /* Updated Gradient: Light Blue/Deep Blue */
+        background: linear-gradient(90deg, #38bdf8, #2563eb);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .certification-org {
+        color: #38bdf8; /* Light Blue Text */
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .certification-id {
+        display: inline-block;
+        background: rgba(56, 189, 248, 0.1); /* Light Blue Background */
+        color: #38bdf8; /* Light Blue Text */
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+        border: 1px solid rgba(56, 189, 248, 0.3); /* Light Blue Border */
+    }
+    
+    #welcome-bubble .absolute { 
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Make sure all text that needs to stand out is white */
+    .text-white, .text-gray-100, .text-gray-200, .text-gray-300 {
+        color: #f3f4f6 !important; /* Ensure high contrast white/light gray */
+    }
+
+    /* Set header background to solid navy for sticky effect */
+    .sticky-header {
+        background-color: #0f172a; /* Deep Navy */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+</style>
+</head>
+<body class="bg-blue-950 text-gray-100 min-h-screen flex flex-col"></body>
+
+    <!-- Navbar -->
+    <header class="bg-blue-950 p-4 shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto flex justify-between items-center flex-wrap">
+            <h1 class="text-3xl font-bold text-white tracking-wide">Portfolio</h1>
+            <div class="hidden md:flex space-x-8 text-lg">
+                <a href="#home" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Home</a>
+                <a href="#about" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300">About</a>
+                <a href="#education" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Education</a>
+                <a href="#certifications" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Certifications</a>
+                <a href="#interests" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Interest & Hobbies</a>
+                <a href="#skill" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Skills</a>
+                <a href="#soft-skills" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Soft Skills</a>
+                <a href="#portfolio-section" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Projects</a>
+                <a href="#internship" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Internship</a>
+                <a href="#contact" class="text-300 hover:text-cyan-400 transition-colors duration-300">Contact</a>
+            </div>
+            <!-- Mobile Menu Button (Optional, can add JS for toggle) -->
+            <button class="md:hidden text-gray-300 text-2xl">
+                &#9776; <!-- Hamburger icon -->
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="flex-grow container mx-auto px-4 py-16 md:py-24 flex flex-col md:flex-row items-center justify-center gap-12 md:gap-24">
+        <!-- Left Content - Text -->
+        <div class="text-center md:text-left max-w-xl">
+            <p class="text-xl md:text-2xl text-cyan-400 mb-2 hero-animated-item" id="hello-text">Hello, It's Me</p>
+            <h2 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-4 hero-animated-item" id="name-text">Lathashree</h2>
+            <!-- New H3 for animated text -->
+            <h3 class="text-2xl md:text-3xl font-bold text-gray-200 mb-4 hero-animated-item" id="aspiring-text">And I'm an <span id="animated-text" class="text-cyan-400 font-semibold"></span></h3>
+            <p class="text-lg md:text-xl text-gray-300 mb-6 hero-animated-item" id="description-text">
+                MCA graduate specializing in Data Science, Machine Learning, and Full-Stack Web Development. 
+                <br>
+                Passionate about applying AI and analytics to solve real-world challenges while building scalable 
+                and user-friendly web applications. Strong interest in NLP, Deep Learning, and data-driven problem solving.
+            </p>
+            <!-- Social Media Icons - Updated for GitHub, LinkedIn, Instagram, and Email -->
+            <div class="flex justify-center md:justify-start space-x-4 mb-8 hero-animated-item" id="social-icons">
+                <a href="https://github.com/latha-shree" target="_blank" rel="noopener noreferrer"
+                  class="w-12 h-12 flex items-center justify-center bg-[#1f2937] border-2 border-cyan-400 text-cyan-400 rounded-full text-2xl transition-all duration-300 ease-in-out shadow-[0_0_10px_rgba(0,255,255,0.3)] hover:bg-cyan-400 hover:text-[#1f2937] hover:scale-110 hover:rotate-6 hover:shadow-[0_0_20px_rgba(0,255,255,0.7)] transform"
+">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/lathashree-bg-17a778283" target="_blank" rel="noopener noreferrer"
+                  class="w-12 h-12 flex items-center justify-center bg-[#1f2937] border-2 border-cyan-400 text-cyan-400 rounded-full text-2xl transition-all duration-300 ease-in-out shadow-[0_0_10px_rgba(0,255,255,0.3)] hover:bg-cyan-400 hover:text-[#1f2937] hover:scale-110 hover:rotate-6 hover:shadow-[0_0_20px_rgba(0,255,255,0.7)] transform"
+">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://www.instagram.com/b_e_i_n_g_s_h_r_e_e?igsh=bXNrcXprdG5yNDM0" target="_blank" rel="noopener noreferrer"
+                  class="w-12 h-12 flex items-center justify-center bg-[#1f2937] border-2 border-cyan-400 text-cyan-400 rounded-full text-2xl transition-all duration-300 ease-in-out shadow-[0_0_10px_rgba(0,255,255,0.3)] hover:bg-cyan-400 hover:text-[#1f2937] hover:scale-110 hover:rotate-6 hover:shadow-[0_0_20px_rgba(0,255,255,0.7)] transform"
+">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="mailto:lathashreeb07@gmail.com"
+                   class="w-12 h-12 flex items-center justify-center bg-[#1f2937] border-2 border-cyan-400 text-cyan-400 rounded-full text-2xl transition-all duration-300 ease-in-out shadow-[0_0_10px_rgba(0,255,255,0.3)] hover:bg-cyan-400 hover:text-[#1f2937] hover:scale-110 hover:rotate-6 hover:shadow-[0_0_20px_rgba(0,255,255,0.7)] transform"
+">
+                    <i class="fas fa-envelope"></i> <!-- Envelope icon for email -->
+                </a>
+            </div>
+            <!-- "More About Me" Button -->
+            <button class="bg-[#1f2937] text-cyan-400 font-bold py-3 px-6 rounded-lg shadow-[0_0_10px_rgba(0,255,255,0.3)] transition-all duration-300 ease-in-out transform hover:bg-cyan-400 hover:text-[#1f2937] hover:scale-110 hover:shadow-[0_0_20px_rgba(0,255,255,0.7)] hero-animated-item" id="more-about-me-button"
+">
+                More About Me
+            </button>
+            
+        </div>
+
+        <!-- Right Content - Image with Glowing Circle -->
+        <div class="w-64 h-64 md:w-80 md:h-80 glowing-circle-container flex-shrink-0 hero-animated-item" id="profile-image-container">
+           <img src="ls.jpg" alt="Lathashree - Profile Picture"   class="w-full h-full object-cover">
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="bg-gray-800 py-16 md:py-24 px-4 text-center">
+        <h2 class="text-4xl font-bold text-white mb-8">About Me</h2>
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-center gap-12 md:gap-24">
+            <!-- Left Content - Image with Glowing Circle -->
+            <div class="w-64 h-64 md:w-80 md:h-80 glowing-circle-container flex-shrink-0">
+                <img src="l2.jpg" alt="Lathashree's Photo" class="w-full h-full object-cover">
+            </div>
+            <!-- Right Content - Text -->
+            <div class="text-center md:text-left max-w-xl">
+                <h3 class="text-3xl font-bold text-white mb-4">Why Choose Me?</h3>
+                <p class="text-lg text-gray-300 mb-6">
+                    I am a passionate and dedicated Computer Science professional with a strong foundation in Data Science, 
+                    Machine Learning, and Full-Stack Web Development. Having completed an internship in Data Science, 
+                    I gained hands-on experience in data preprocessing, model building, and visualization, which further 
+                    strengthened my ability to solve real-world challenges through AI.
+                    <br><br>
+                     
+                    I thrive on continuous learning and enjoy exploring emerging technologies in Deep Learning, NLP, and 
+                    data-driven applications. From designing intelligent ML models to building robust web platforms, 
+                    my goal is to create scalable and impactful solutions. With a focus on clean, effective, and well-documented 
+                    code, I am committed to transforming ideas into meaningful innovations. Let’s create something amazing together!
+                </p>
+                <a href="ls2.html" download>
+                    <button class="bg-[#1f2937] text-cyan-400 font-bold py-3 px-6 rounded-lg shadow-[0_0_10px_rgba(0,255,255,0.3)] transition-all duration-300 ease-in-out transform hover:bg-cyan-400 hover:text-[#1f2937] hover:scale-105 hover:shadow-[0_0_20px_rgba(0,255,255,0.7)]"
+                     ">
+                        View CV
+                    </button>
+                
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+   <!-- Education Section -->
+<section id="education" class="bg-gray-900 py-16 md:py-24 px-4">
+    <div class="container mx-auto">
+        <h2 class="text-4xl font-bold text-white mb-12 text-center">Education</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <!-- Master of Computer Applications -->
+            <div class="education-card">
+                <div class="education-icon text-center">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <span class="education-date">2025</span>
+                <h3 class="text-2xl font-bold text-white mb-2">Master of Computer Applications</h3>
+                <p class="text-xl text-cyan-400 mb-4">St Joseph Engineering College, Mangalore</p>
+                <p class="text-gray-300 mb-4">CGPA: 8.22</p>
+                <p class="text-gray-300 mb-4">Relevant coursework:</p>
+                <div class="mb-4">
+                    <span class="course-tag">Machine Learning</span>
+                    <span class="course-tag">Data Science</span>
+                    <span class="course-tag">Web Development</span>
+                    <span class="course-tag">Database Systems</span>
+                    <span class="course-tag">Software Engineering</span>
+                </div>
+            </div>
+            
+            <!-- Bachelor of Computer Applications -->
+            <div class="education-card">
+                <div class="education-icon text-center">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <span class="education-date">2023</span>
+                <h3 class="text-2xl font-bold text-white mb-2">Bachelor of Computer Applications</h3>
+                <p class="text-xl text-cyan-400 mb-4">Alva's College, Moodbidri</p>
+                <p class="text-gray-300 mb-4">CGPA: 8.34</p>
+                <p class="text-gray-300 mb-4">Key subjects:</p>
+                <div class="mb-4">
+                    <span class="course-tag">Programming</span>
+                    <span class="course-tag">Data Structures</span>
+                    <span class="course-tag">Algorithms</span>
+                    <span class="course-tag">Web Technologies</span>
+                </div>
+            </div>
+            
+            <!-- Pre-University Education -->
+            <div class="education-card">
+                <div class="education-icon text-center">
+                    <i class="fas fa-school"></i>
+                </div>
+                <span class="education-date">2020</span>
+                <h3 class="text-2xl font-bold text-white mb-2">Pre-University College</h3>
+                <p class="text-xl text-cyan-400 mb-4">Jain PU College, Moodbidri</p>
+                <p class="text-gray-300">Completed pre-university education with focus on science and mathematics</p>
+            </div>
+            
+            <!-- SSLC -->
+            <div class="education-card">
+                <div class="education-icon text-center">
+                    <i class="fas fa-book"></i>
+                </div>
+                <span class="education-date">2018</span>
+                <h3 class="text-2xl font-bold text-white mb-2">SSLC</h3>
+                <p class="text-xl text-cyan-400 mb-4">Jain High School, Moodbidri</p>
+                <p class="text-gray-300">Completed secondary school education with distinction</p>
+            </div>
+        </div>
+        
+        <!-- Certifications Section -->
+        <section id="certifications" class="mt-16 text-center">
+            <div class="mt-16 text-center">
+                <h3 class="text-3xl font-bold text-white mb-8">Certifications</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                    <!-- Certification 1 -->
+                    <div class="certification-card">
+                        <div class="certification-icon text-center">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <span class="certification-date">2024</span>
+                        <h4 class="text-xl font-semibold text-white mb-2">Data Science Foundation</h4>
+                        <p class="certification-org">Professional Certification</p>
+                        <p class="text-gray-300 mt-3">Fundamentals of data analysis, visualization, and statistical modeling</p>
+                    </div>
+                    
+                    <!-- Certification 2 -->
+                    <div class="certification-card">
+                        <div class="certification-icon text-center">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <span class="certification-date">2024</span>
+                        <h4 class="text-xl font-semibold text-white mb-2">Machine Learning with Python</h4>
+                        <p class="certification-org">Professional Certification</p>
+                        <p class="text-gray-300 mt-3">Implementation of ML algorithms using Python and scikit-learn</p>
+                    </div>
+                    
+                    <!-- Certification 3 -->
+                    <div class="certification-card">
+                        <div class="certification-icon text-center">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <span class="certification-date">2024</span>
+                        <h4 class="text-xl font-semibold text-white mb-2">AI with Python - Deep Neural Networks</h4>
+                        <p class="certification-org">Professional Certification</p>
+                        <p class="text-gray-300 mt-3">Design and implementation of deep learning models</p>
+                    </div>
+                    
+                    <!-- Certification 4 -->
+                    <div class="certification-card">
+                        <div class="certification-icon text-center">
+                            <i class="fab fa-aws"></i>
+                        </div>
+                        <span class="certification-date">2024</span>
+                        <h4 class="text-xl font-semibold text-white mb-2">AWS Cloud Training Workshop</h4>
+                        <p class="certification-org">Amazon Web Services</p>
+                        <p class="text-gray-300 mt-3">Cloud infrastructure and services training</p>
+                    </div>
+                    
+                    <!-- Certification 5 -->
+                    <div class="certification-card">
+                        <div class="certification-icon text-center">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <span class="certification-date">2024</span>
+                        <h4 class="text-xl font-semibold text-white mb-2">React Native</h4>
+                        <p class="certification-org">Mobile Development Certification</p>
+                        <p class="text-gray-300 mt-3">Cross-platform mobile application development</p>
+                    </div>
+                    
+                    <!-- Certification 6 -->
+                    <div class="certification-card">
+                        <div class="certification-icon text-center">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <span class="certification-date">2023</span>
+                        <h4 class="text-xl font-semibold text-white mb-2">Functions in Python</h4>
+                        <p class="certification-org">Programming Certification</p>
+                        <p class="text-gray-300 mt-3">Advanced Python programming techniques</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+<!-- Interests & Hobbies Section -->
+<section id="interests" class="py-16 md:py-24 px-4 text-center bg-gray-800">
+    <h2 class="text-4xl font-bold text-white mb-8">Interests & Hobbies</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        <!-- Reading -->
+        <div class="soft-skill-card">
+            <div class="skill-icon">
+                <i class="fas fa-book-reader"></i>
+            </div>
+            <h3 class="soft-skill-title">Reading</h3>
+            <p class="soft-skill-text">Exploring technology journals, research papers, and fiction to expand knowledge and creativity</p>
+        </div>
+        
+        <!-- Writing -->
+        <div class="soft-skill-card">
+            <div class="skill-icon">
+                <i class="fas fa-pencil-alt"></i>
+            </div>
+            <h3 class="soft-skill-title">Writing</h3>
+            <p class="soft-skill-text">Documenting technical concepts, creating project documentation, and creative writing</p>
+        </div>
+        
+        <!-- Graphic Design -->
+        <div class="soft-skill-card">
+            <div class="skill-icon">
+                <i class="fas fa-paint-brush"></i>
+            </div>
+            <h3 class="soft-skill-title">Graphic Design</h3>
+            <p class="soft-skill-text">Creating visual content, UI mockups, and digital artwork using design tools</p>
+        </div>
+        
+        <!-- Technology Exploration -->
+        <div class="soft-skill-card">
+            <div class="skill-icon">
+                <i class="fas fa-microchip"></i>
+            </div>
+            <h3 class="soft-skill-title">Tech Exploration</h3>
+            <p class="soft-skill-text">Staying updated with emerging technologies, frameworks, and development methodologies</p>
+        </div>
+    </div>
+</section>
+
+    <!-- Technical Skills Section -->
+    <section id="skill" class="bg-gray-900 py-16 md:py-24 px-4 text-center">
+        <h2 class="text-4xl font-bold text-white mb-8">Professional Skills</h2>
+
+        <div class="max-w-3xl mx-auto space-y-8 text-left">
+            <!-- Skill Bar: HTML -->
+            <div class="skill-item" data-skill-percentage="90">
+                <div class="flex justify-between items-center mb-2">
+                    
+                    <span class="text-lg text-gray-200"><i class="fab fa-python text-blue-400 mr-2"></i>Python</span>
+                    <span class="text-lg text-gray-200 skill-percentage">0%</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar-fill" id="html-progress-bar"></div>
+                </div>
+            </div>
+
+            <!-- Skill Bar: CSS -->
+            <div class="skill-item" data-skill-percentage="80">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-lg text-gray-200"><i class="fas fa-robot text-green-400 mr-2"></i>Machine Learning</span>
+                    <span class="text-lg text-gray-200 skill-percentage">0%</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar-fill" id="css-progress-bar"></div>
+                </div>
+            </div>
+
+            <!-- Skill Bar: JavaScript -->
+            <div class="skill-item" data-skill-percentage="85">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-lg text-gray-200"><i class="fab fa-html5 text-orange-500 mr-2"></i>HTML</span>
+                    <span class="text-lg text-gray-200 skill-percentage">0%</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar-fill" id="js-progress-bar"></div>
+                </div>
+            </div>
+
+            <!-- Skill Bar: Python -->
+            <div class="skill-item" data-skill-percentage="70">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-lg text-gray-200"><i class="fas fa-brain text-pink-400 mr-2"></i>Deep Learning</span>
+                    <span class="text-lg text-gray-200 skill-percentage">0%</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar-fill" id="python-progress-bar"></div>
+                </div>
+            </div>
+
+            <!-- Skill Bar: React -->
+            <div class="skill-item" data-skill-percentage="75">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-lg text-gray-200"><i class="fas fa-language text-purple-400 mr-2"></i>Natural Language Processing</span>
+                    <span class="text-lg text-gray-200 skill-percentage">0%</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar-fill" id="react-progress-bar"></div>
+                </div>
+            </div>
+
+            <!-- Skill Bar: CSS --> 
+            <div class="skill-item" data-skill-percentage="80"> 
+                <div class="flex justify-between items-center mb-2"> 
+                    <span class="text-lg text-gray-200"><i class="fab fa-css3-alt text-blue-500 mr-2"></i>CSS</span> 
+                    <span class="text-lg text-gray-200 skill-percentage">0%</span> 
+                </div> 
+                <div class="skill-bar-container"> 
+                    <div class="skill-bar-fill" id="css-progress-bar">
+                </div>
+                 </div> 
+            </div>
+        </div>
+    </section>
+
+    <!-- Soft Skills Section -->
+    <section id="soft-skills" class="py-16 md:py-24 px-4 text-center bg-gray-800">
+        <h2 class="text-4xl font-bold text-white mb-8">Soft Skills</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <!-- Creativity -->
+            <div class="soft-skill-card">
+                <div class="skill-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3 class="soft-skill-title">Creativity</h3>
+                <div class="circular-progress" id="creativity-progress">
+                    <span class="progress-value">0%</span>
+                </div>
+                <p class="soft-skill-text">Ability to think outside the box and generate innovative ideas</p>
+            </div>
+            
+            <!-- Communication -->
+            <div class="soft-skill-card">
+                <div class="skill-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <h3 class="soft-skill-title">Communication</h3>
+                <div class="circular-progress" id="communication-progress">
+                    <span class="progress-value">0%</span>
+                </div>
+                <p class="soft-skill-text">Effectively conveying information and listening actively</p>
+            </div>
+            
+            <!-- Problem Solving -->
+            <div class="soft-skill-card">
+                <div class="skill-icon">
+                    <i class="fas fa-puzzle-piece"></i>
+                </div>
+                <h3 class="soft-skill-title">Problem Solving</h3>
+                <div class="circular-progress" id="problem-progress">
+                    <span class="progress-value">0%</span>
+                </div>
+                <p class="soft-skill-text">Analyzing complex issues and developing effective solutions</p>
+            </div>
+            
+            <!-- Teamwork -->
+            <div class="soft-skill-card">
+                <div class="skill-icon">
+                    <i class="fas fa-people-carry"></i>
+                </div>
+                <h3 class="soft-skill-title">Teamwork</h3>
+                <div class="circular-progress" id="teamwork-progress">
+                    <span class="progress-value">0%</span>
+                </div>
+                <p class="soft-skill-text">Collaborating effectively with others to achieve common goals</p>
+            </div>
+        </div>
+    </section>
+
+   <!-- Portfolio Section -->
+<section id="portfolio-section" class="bg-gray-900 py-16 md:py-24 px-4 text-center">
+    <h2 class="text-4xl font-bold text-white mb-8">My Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <!-- SpamShield Project -->
+        <div class="project-card">
+            <img src="https://c8.alamy.com/comp/HPTRXY/spam-HPTRXY.jpg" alt="SpamShield Project">
+            <div class="project-content">
+                <h3 class="text-2xl font-semibold text-white mb-2">SpamShield</h3>
+                <p class="text-gray-300">Multi-modal spam detection application</p>
+            </div>
+            <div class="project-info">
+                <h3 class="text-2xl font-semibold text-white mb-4">SpamShield</h3>
+                <p class="text-gray-300 mb-4">Developed a multi-modal spam detection app (text, image, audio, CSV) achieving 98.6% accuracy. Built a real-time dashboard with prediction logs and visual metrics.</p>
+                <div class="mb-4">
+                    <span class="tech-tag">Flask</span>
+                    <span class="tech-tag">TensorFlow</span>
+                    <span class="tech-tag">NLTK</span>
+                    <span class="tech-tag">Bootstrap</span>
+                </div>
+                <a href="https://github.com/latha-shree/SpamShield" target="_blank" class="view-project-btn">View Project</a>
+            </div>
+        </div>
+        
+        <!-- Construction Site PPE Detection System -->
+        <div class="project-card">
+            <img src="https://wallpaperaccess.com/full/3434349.jpg" alt="PPE Detection System">
+            <div class="project-content">
+                <h3 class="text-2xl font-semibold text-white mb-2">Construction Site PPE Detection System</h3>
+                <p class="text-gray-300">Construction site safety monitoring</p>
+            </div>
+            <div class="project-info">
+                <h3 class="text-2xl font-semibold text-white mb-4">Construction Site PPE Detection System</h3>
+                <p class="text-gray-300 mb-4">Implemented real-time video detection of safety equipment on workers, achieving 90%+ compliance accuracy using YOLOV5 and OpenCV.</p>
+                <div class="mb-4">
+                    <span class="tech-tag">YOLOV5</span>
+                    <span class="tech-tag">OpenCV</span>
+                    <span class="tech-tag">Python</span>
+                </div>
+                <a href="https://github.com/latha-shree/Contruction-Site-Safety-PPE-Detection" target="_blank" class="view-project-btn">View Project</a>
+            </div>
+        </div>
+        
+        <!-- Facial Recognition Attendance System -->
+        <div class="project-card">
+            <img src="https://th.bing.com/th/id/OIP.bpT0VO48tb0rq0tyg6PCIwHaEL?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Facial Recognition System">
+            <div class="project-content">
+                <h3 class="text-2xl font-semibold text-white mb-2">Suicide & Depression Detection</h3>
+                <p class="text-gray-300">Mental health monitoring using NLP & ML</p>
+            </div>
+            <div class="project-info">
+                <h3 class="text-2xl font-semibold text-white mb-4">Sucide Depression Detection System</h3>
+                <p class="text-gray-300 mb-4">Developed a machine learning model to analyze social media/text data and detect signs of depression or suicidal tendencies. 
+            Utilized Natural Language Processing (NLP) for feature extraction and classification, achieving over 85% detection accuracy.
+        </p></p>
+                <div class="mb-4">
+                    <span class="tech-tag">OpenCV</span>
+                    <span class="tech-tag">Tkinter</span>
+                    <span class="tech-tag">SQLite</span>
+                </div>
+                <a href="https://github.com/latha-shree/Suicide-Depression-Detection-System" target="_blank" class="view-project-btn">View Project</a>
+            </div>
+        </div>
+        
+        <!-- Traffic Congestion Detection -->
+        <div class="project-card">
+            <img src="https://img.freepik.com/premium-photo/smart-traffic-management-systems-urban-environments_1230253-4924.jpg?w=2000" alt="Traffic Congestion Detection">
+            <div class="project-content">
+                <h3 class="text-2xl font-semibold text-white mb-2">Number Plate with Traffic Congestion Detection</h3>
+                <p class="text-gray-300">Number Plate Detection  and Real-time traffic analysis system</p>
+            </div>
+            <div class="project-info">
+                <h3 class="text-2xl font-semibold text-white mb-4">Number Plate with Traffic Congestion Detection</h3>
+                <p class="text-gray-300 mb-4">Estimated traffic density from CCTV frames for early congestion alerts using OpenCV and Python computer vision techniques.</p>
+                <div class="mb-4">
+                    <span class="tech-tag">OpenCV</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Computer Vision</span>
+                </div>
+                <a href="https://github.com/latha-shree/Number-Plate-Detection" target="_blank" class="view-project-btn">View Project</a>
+            </div>
+        </div>
+        
+        <!-- Blood Bank Management System -->
+        <div class="project-card">
+            <img src="https://tse2.mm.bing.net/th/id/OIP.gjrNIa2OFkwuzXgleytu2AHaEy?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Blood Bank Management System">
+            <div class="project-content">
+                <h3 class="text-2xl font-semibold text-white mb-2">WildAleart</h3>
+                <p class="text-gray-300">Real-time animal detection with YOLOv5 & Telegram alerts</p>
+            </div>
+            <div class="project-info">
+                <h3 class="text-2xl font-semibold text-white mb-4">WildAlert – AI Animal Detection System</h3>
+                <p class="text-gray-300 mb-4"> Developed a Flask-based AI system that detects animals in real-time using <b>YOLOv5</b> and <b>OpenCV</b>.
+            The application streams annotated video in a web browser and sends <b>Telegram alerts</b> with images whenever
+            an animal is detected. </p>
+                <div class="mb-4">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Flask</span>
+                    <span class="tech-tag">YOLOv5</span>
+                    <span class="tech-tag">OpenCV</span>
+                </div>
+                <a href="https://github.com/latha-shree/Wild-Aleart" class="view-project-btn">View Project</a>
+            </div>
+        </div>
+        
+        <!-- AI-Based Interactive Interview System -->
+        <div class="project-card">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="AI Interview System">
+            <div class="project-content">
+                <h3 class="text-2xl font-semibold text-white mb-2">AI Viva Mentor</h3>
+                <p class="text-gray-300">AI-powered mock interview and quiz system with speech & emotion analysis</p>
+            </div>
+            <div class="project-info">
+                <h3 class="text-2xl font-semibold text-white mb-4">AI-Powered Viva & Emotion Detection System</h3>
+                <p class="text-gray-300 mb-4">  Developed a Flask-based interactive interview assistant that evaluates candidates through
+            <b>spoken answers</b> and <b>facial emotion recognition</b></p>
+                <div class="mb-4">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Flask</span>
+                    <span class="tech-tag">TensorFlow/Keras</span>
+                    <span class="tech-tag">OpenCV</span>
+                    <span class="tech-tag">SpeechRecognition</span>
+                </div>
+                <a href="https://github.com/latha-shree/AI-Viva-Mentor" class="view-project-btn">View Project</a>
+            </div>
+        </div>
+        
+        <!-- Water Quality Analysis -->
+        <div class="project-card">
+            <img src="https://cdn.pixabay.com/photo/2024/04/03/09/29/ai-generated-8672645_640.jpg" alt="Water Quality Analysis">
+            <div class="project-content">
+                <h3 class="text-2xl font-semibold text-white mb-2">Water Quality Analysis</h3>
+                <p class="text-gray-300">Data analysis and classification</p>
+            </div>
+            <div class="project-info">
+                <h3 class="text-2xl font-semibold text-white mb-4">Water Quality Analysis</h3>
+                <p class="text-gray-300 mb-4">Performed EDA and impurity classification on 50+ features from water quality datasets using Google Colab and Python data science libraries.</p>
+                <div class="mb-4">
+                    <span class="tech-tag">Google Colab</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Data Analysis</span>
+                </div>
+                <a href="https://github.com/latha-shree/Water-Quality-Analysis-" class="view-project-btn">View Project</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+ <section id="internship" class="bg-gray-800 py-16 md:py-24 px-4 text-center">
+        <h2 class="text-4xl font-bold text-white mb-12">Internship Experience</h2>
+        <div class="max-w-4xl mx-auto text-left">
+            <div class="education-card p-6 md:p-10 text-white border-cyan-400 border-2">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+                    <h3 class="text-3xl font-bold text-cyan-400">Data Science Intern</h3>
+                    <span class="education-date mt-2 md:mt-0">Oct 2024</span>
+                </div>
+                <p class="text-xl font-semibold text-gray-200 mb-4">LPoint, Mangalore</p>
+                <p class="text-gray-300 leading-relaxed">
+                    During my internship at LPoint, I had the opportunity to work on AI and data-driven applications, where I applied concepts of machine learning, deep learning, and natural language processing to solve practical problems. My role involved handling real-world datasets, building models, and deploying them into interactive systems using Flask. The experience allowed me to explore the integration of computer vision, speech processing, and chatbot development, giving me exposure to both the technical and applied aspects of artificial intelligence. Beyond technical work, I also developed problem-solving, research, and collaboration skills while working in a team-oriented environment.
+                </p>
+                <h4 class="text-lg font-bold text-white mt-4 mb-2">Skills Gained</h4>
+                <div class="mb-4">
+                    <h5 class="font-semibold text-gray-300">Programming & Tools:</h5>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="course-tag bg-gray-700 text-cyan-400 text-xs px-3 py-1 rounded-full">Python</span>
+                        <span class="course-tag bg-gray-700 text-cyan-400 text-xs px-3 py-1 rounded-full">Flask</span>
+                        <span class="course-tag bg-gray-700 text-cyan-400 text-xs px-3 py-1 rounded-full">OpenCV</span>
+                        <span class="course-tag bg-gray-700 text-cyan-400 text-xs px-3 py-1 rounded-full">TensorFlow/Keras</span>
+                        <span class="course-tag bg-gray-700 text-cyan-400 text-xs px-3 py-1 rounded-full">Scikit-learn</span>
+                        <span class="course-tag bg-gray-700 text-cyan-400 text-xs px-3 py-1 rounded-full">NLP/CV/Speech Processing</span>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <h5 class="font-semibold text-gray-300">Core Skills:</h5>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="course-tag bg-gray-700 text-cyan-400 text-xs px-3 py-1 rounded-full">Machine Learning</span>
+                        <span class="course-tag bg-gray-700 text-cyan-400 text-xs px-3 py-1 rounded-full">Deep Learning</span>
+                        <span class="course-tag bg-gray-700 text-cyan-400 text-xs px-3 py-1 rounded-full">Model Deployment</span>
+                        <span class="course-tag bg-gray-700 text-cyan-400 text-xs px-3 py-1 rounded-full">Team Collaboration</span>
+                    </div>
+                </div>
+            <div class="mb-4">
+                <h5 class="font-semibold text-gray-300">Development Skills:</h5>
+                <div class="flex flex-wrap gap-2 mt-2">
+                    <span class="course-tag bg-gray-700 text-cyan-400 text-xs px-3 py-1 rounded-full">Data preprocessing</span>
+                    <span class="course-tag bg-gray-700 text-cyan-400 text-xs px-3 py-1 rounded-full">Feature extraction</span>
+                    <span class="course-tag bg-gray-700 text-cyan-400 text-xs px-3 py-1 rounded-full">Model training & evaluation</span>
+                    <span class="course-tag bg-gray-700 text-cyan-400 text-xs px-3 py-1 rounded-full">Web application integration</span>
+                </div>
+            </div>
+
+            <div>
+                <h5 class="font-semibold text-gray-300">Professional Skills:</h5>
+                <div class="flex flex-wrap gap-2 mt-2">
+                    <span class="course-tag bg-gray-700 text-cyan-400 text-xs px-3 py-1 rounded-full">Problem-solving</span>
+                    <span class="course-tag bg-gray-700 text-cyan-400 text-xs px-3 py-1 rounded-full">Research mindset</span>
+                    <span class="course-tag bg-gray-700 text-cyan-400 text-xs px-3 py-1 rounded-full">Team collaboration</span>
+                    <span class="course-tag bg-gray-700 text-cyan-400 text-xs px-3 py-1 rounded-full">Communication</span>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+  <!-- Contact Section -->
+    <section id="contact" class="bg-gray-900 py-16 md:py-24 px-4 text-center">
+      
+       
+        <h2 class="text-4xl font-bold text-white mb-8">Contact <span class="text-cyan-400">Me</span></h2>
+        <div class="container mx-auto flex flex-col md:flex-row items-start justify-center gap-12 md:gap-24 max-w-6xl">
+            <!-- Left Side: Text and Info -->
+            <div class="md:w-1/2 text-left space-y-6">
+                <h3 class="text-3xl font-bold text-white mb-4">Let's Work Together</h3>
+                <p class="text-lg text-gray-300">
+                    I'm currently available for freelance projects, collaborations, or full-time roles.
+                    Whether you have a question or just want to connect, feel free to reach out.
+                    I'm always eager to discuss new ideas and opportunities.
+                </p>
+                <div class="space-y-4">
+                    <p class="flex items-center text-lg text-gray-300">
+                        <i class="fas fa-envelope text-cyan-400 mr-3 text-xl"></i>
+                        lathashreeb07@gmail.com
+                    </p>
+                    <p class="flex items-center text-lg text-gray-300">
+                        <i class="fas fa-phone-alt text-cyan-400 mr-3 text-xl"></i>
+                        7899016046
+                    </p>
+                </div>
+                <div class="flex space-x-4 pt-4">
+                    <a href="https://github.com/latha-shree" target="_blank" rel="noopener noreferrer"
+                       class="contact-social-icon flex items-center justify-center">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/lathashree-bg-17a778283" target="_blank" rel="noopener noreferrer"
+                       class="contact-social-icon flex items-center justify-center">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://www.instagram.com/b_e_i_n_g_s_h_r_e_e?igsh=bXNrcXprdG5yNDM0" target="_blank" rel="noopener noreferrer"
+                       class="contact-social-icon flex items-center justify-center">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="mailto:lathashreeb07@gmail.com"
+                       class="contact-social-icon flex items-center justify-center">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Side: Contact Form -->
+            <div class="md:w-1/2 w-full mt-8 md:mt-0">
+                <form action="https://formspree.io/f/mpwjgvyb" method="POST" class="space-y-6">
+                    <div>
+                        <input type="text" id="name" name="name" placeholder="Enter Your Name"
+                               class="contact-input">
+                    </div>
+                    <div>
+                        <input type="email" id="email" name="email" placeholder="Enter Your Email"
+                               class="contact-input">
+                    </div>
+                    <div>
+                        <input type="text" id="subject" name="subject" placeholder="Enter Your Subject"
+                               class="contact-input">
+                    </div>
+                    <div>
+                        <textarea id="message" name="message" rows="6" placeholder="Enter Your Message"
+                                  class="contact-input resize-none"></textarea>
+                    </div>
+                    <button type="submit"
+                            class="w-full py-3 px-6 rounded-lg font-bold text-lg bg-[#1f2937] text-cyan-400 shadow-[0_0_10px_rgba(0,255,255,0.3)] transition-all duration-300 ease-in-out transform hover:bg-cyan-400 hover:text-[#1f2937] hover:scale-105 hover:shadow-[0_0_20px_rgba(0,255,255,0.7)] glowing-submit-button"
+">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple Footer -->
+    <footer class="bg-gray-950 p-6 text-center text-gray-400 text-sm">
+        <p>&copy; 2025 Lathashree. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for animations -->
+    <script>
+        // Global element references and constants for Hero Section
+        let helloText, nameText, aspiringText, descriptionText, socialIcons, moreAboutMeButton, profileImageContainer;
+
+        const animationDuration = 1.0; // Duration of slide-in/out animation in seconds
+        const pauseVisibleDuration = 5 * 1000; // 5 seconds (reduced from 30 for better experience)
+        const pauseHiddenDuration = 1 * 1000; // 1 second pause between cycles
+
+        // Typewriter variables
+        let charIndex = 0;
+        const textToAnimate = "Aspiring Data Science";
+        let typewriterTimeoutId;
+        let typewriterRunning = false;
+
+        // Track animation states
+        let skillsAnimated = false;
+        let softSkillsAnimated = false;
+
+        // Function to get Hero section element references
+        function setupHeroElements() {
+            helloText = document.getElementById('hello-text');
+            nameText = document.getElementById('name-text');
+            aspiringText = document.getElementById('aspiring-text');
+            descriptionText = document.getElementById('description-text');
+            socialIcons = document.getElementById('social-icons');
+            moreAboutMeButton = document.getElementById('more-about-me-button');
+            profileImageContainer = document.getElementById('profile-image-container');
+        }
+
+        // Function to start the typewriter animation
+        function startTypewriter() {
+            const animatedTextElement = document.getElementById('animated-text');
+            if (!animatedTextElement || typewriterRunning) return;
+
+            typewriterRunning = true;
+            charIndex = 0;
+            animatedTextElement.textContent = '';
+            animatedTextElement.classList.remove('blinking-cursor');
+
+            function typeChar() {
+                if (charIndex < textToAnimate.length) {
+                    animatedTextElement.textContent += textToAnimate.charAt(charIndex);
+                    charIndex++;
+                    typewriterTimeoutId = setTimeout(typeChar, 100);
+                } else {
+                    animatedTextElement.classList.add('blinking-cursor');
+                    typewriterRunning = false;
+                }
+            }
+            typeChar();
+        }
+
+        // Function to stop and reset the typewriter animation
+        function stopTypewriter() {
+            clearTimeout(typewriterTimeoutId);
+            typewriterRunning = false;
+            const animatedTextElement = document.getElementById('animated-text');
+            if (animatedTextElement) {
+                animatedTextElement.classList.remove('blinking-cursor');
+                animatedTextElement.textContent = '';
+            }
+        }
+
+        // Function to reset elements to their initial hidden state
+        function resetElementsToInitialState() {
+            const elements = [
+                { el: helloText, transform: 'translateY(-50px)' },
+                { el: nameText, transform: 'translateX(-50px)' },
+                { el: aspiringText, transform: 'translateY(50px)' },
+                { el: descriptionText, transform: 'translateY(50px)' },
+                { el: socialIcons, transform: 'translateY(50px)' },
+                { el: moreAboutMeButton, transform: 'translateY(50px)' },
+                { el: profileImageContainer, transform: 'translateX(50px)' }
+            ];
+
+            elements.forEach(({ el, transform }) => {
+                if (el) {
+                    // Remove all animation classes
+                    el.className = el.className.split(' ').filter(c => 
+                        !c.startsWith('hero-slide-in-') && !c.startsWith('hero-slide-out-')
+                    ).join(' ');
+                    
+                    // Reset to initial state
+                    el.style.opacity = '0';
+                    el.style.transform = transform;
+                    el.offsetHeight; // Force reflow
+                }
+            });
+        }
+
+        // Function to apply 'in' animations to Hero section elements
+        function applyHeroAnimationsIn() {
+            const elements = [
+                { el: helloText, animation: 'hero-slide-in-top', delay: 0.2 },
+                { el: nameText, animation: 'hero-slide-in-left', delay: 0.4 },
+                { el: aspiringText, animation: 'hero-slide-in-bottom', delay: 0.5 },
+                { el: descriptionText, animation: 'hero-slide-in-bottom', delay: 0.6 },
+                { el: socialIcons, animation: 'hero-slide-in-bottom', delay: 0.7 },
+                { el: moreAboutMeButton, animation: 'hero-slide-in-bottom', delay: 0.8 },
+                { el: profileImageContainer, animation: 'hero-slide-in-right', delay: 0.5 }
+            ];
+
+            elements.forEach(({ el, animation, delay }) => {
+                if (el) {
+                    setTimeout(() => {
+                        // Remove any existing animation classes
+                        el.className = el.className.split(' ').filter(c => 
+                            !c.startsWith('hero-slide-in-') && !c.startsWith('hero-slide-out-')
+                        ).join(' ');
+                        
+                        // Add the new animation class
+                        el.classList.add(animation);
+                        
+                        // Start typewriter when aspiring text animates in
+                        if (el === aspiringText) {
+                            startTypewriter();
+                        }
+                    }, delay * 1000);
+                }
+            });
+        }
+
+        // Function to apply 'out' animations to Hero section elements
+        function applyHeroAnimationsOut() {
+            const elements = [
+                { el: helloText, animation: 'hero-slide-out-top', delay: 0.2 },
+                { el: nameText, animation: 'hero-slide-out-left', delay: 0.4 },
+                { el: aspiringText, animation: 'hero-slide-out-bottom', delay: 0.5 },
+                { el: descriptionText, animation: 'hero-slide-out-bottom', delay: 0.6 },
+                { el: socialIcons, animation: 'hero-slide-out-bottom', delay: 0.7 },
+                { el: moreAboutMeButton, animation: 'hero-slide-out-bottom', delay: 0.8 },
+                { el: profileImageContainer, animation: 'hero-slide-out-right', delay: 0.5 }
+            ];
+
+            elements.forEach(({ el, animation, delay }) => {
+                if (el) {
+                    setTimeout(() => {
+                        // Remove any existing animation classes
+                        el.className = el.className.split(' ').filter(c => 
+                            !c.startsWith('hero-slide-in-') && !c.startsWith('hero-slide-out-')
+                        ).join(' ');
+                        
+                        // Add the new animation class
+                        el.classList.add(animation);
+                        
+                        // Stop typewriter when aspiring text animates out
+                        if (el === aspiringText) {
+                            stopTypewriter();
+                        }
+                    }, delay * 1000);
+                }
+            });
+        }
+
+        // Main function to start the continuous animation cycle for the Hero section
+        function startHeroAnimationCycle() {
+            // First reset all elements to initial state
+            resetElementsToInitialState();
+            
+            // Then apply the "in" animations
+            applyHeroAnimationsIn();
+            
+            // After the elements are visible for a while, animate them out and restart the cycle
+            setTimeout(() => {
+                applyHeroAnimationsOut();
+                
+                // After the out animation completes, restart the cycle
+                setTimeout(() => {
+                    startHeroAnimationCycle();
+                }, (animationDuration * 1000) + 500); // Wait for animation to complete plus buffer
+            }, pauseVisibleDuration);
+        }
+
+        // Skill bar animation functions - FIXED
+        function animateSkillBars() {
+            const skillItems = document.querySelectorAll('.skill-item');
+            skillItems.forEach(item => {
+                const percentage = item.dataset.skillPercentage;
+                const progressBar = item.querySelector('.skill-bar-fill');
+                const percentageText = item.querySelector('.skill-percentage');
+
+                if (progressBar && percentageText) {
+                    // Reset to 0% and force reflow to ensure animation replays from start
+                    progressBar.style.width = '0%';
+                    percentageText.textContent = '0%';
+                    
+                    // Force reflow to ensure reset is applied before animation
+                    void progressBar.offsetWidth;
+
+                    // Apply the final percentage, let CSS transition handle the animation
+                    setTimeout(() => {
+                        progressBar.style.width = percentage + '%';
+                    }, 50);
+                    
+                    // Animate percentage text
+                    let currentPercentage = 0;
+                    const interval = setInterval(() => {
+                        if (currentPercentage < percentage) {
+                            currentPercentage++;
+                            percentageText.textContent = currentPercentage + '%';
+                        } else {
+                            clearInterval(interval);
+                        }
+                    }, 1500 / percentage); // Adjust speed based on percentage
+                }
+            });
+        }
+
+        // Circular progress bar animation functions
+        function animateCircularProgress() {
+            const progressElements = [
+                { 
+                    element: document.getElementById('creativity-progress'),
+                    progress: 90
+                },
+                { 
+                    element: document.getElementById('communication-progress'),
+                    progress: 65
+                },
+                { 
+                    element: document.getElementById('problem-progress'),
+                    progress: 85
+                },
+                { 
+                    element: document.getElementById('teamwork-progress'),
+                    progress: 80
+                }
+            ];
+            
+            progressElements.forEach(item => {
+                const progressElement = item.element;
+                const targetProgress = item.progress;
+                const progressValue = progressElement.querySelector('.progress-value');
+                
+                // Reset to 0
+                progressValue.textContent = '0%';
+                progressElement.style.background = `conic-gradient(#22d3ee 0deg, #6366f1 0deg, #4b5563 0deg)`;
+                progressElement.offsetHeight;
+                
+                let currentProgress = 0;
+                const increment = targetProgress / 50;
+                
+                const progressInterval = setInterval(() => {
+                    if (currentProgress < targetProgress) {
+                        currentProgress += increment;
+                        if (currentProgress > targetProgress) currentProgress = targetProgress;
+                        
+                        // Update text values
+                        const displayProgress = Math.round(currentProgress);
+                        progressValue.textContent = `${displayProgress}%`;
+                        
+                        // Update circular progress
+                        const degrees = (currentProgress / 100) * 360;
+                        progressElement.style.background = `conic-gradient(#22d3ee 0deg, #6366f1 ${degrees}deg, #4b5563 ${degrees}deg, #4b5563 360deg)`;
+                    } else {
+                        clearInterval(progressInterval);
+                    }
+                }, 1500 / targetProgress); // Adjust speed based on target progress
+            });
+        }
+
+        // Initialize elements and start all animation cycles when the DOM is fully loaded
+        document.addEventListener("DOMContentLoaded", () => {
+            setupHeroElements();
+            startHeroAnimationCycle();
+
+            // Animate skills when the page loads with a slight delay
+            setTimeout(() => {
+                animateSkillBars();
+                animateCircularProgress();
+                skillsAnimated = true;
+                softSkillsAnimated = true;
+            }, 500); // Increased from 1000ms to 500ms for better UX
+        });
+
+        // Animate skills when the user scrolls to the skills sections
+        window.addEventListener('scroll', function() {
+            const skillsSection = document.getElementById('skill');
+            const softSkillsSection = document.getElementById('soft-skills');
+            
+            // Technical skills animation trigger
+            if (skillsSection) {
+                const rect = skillsSection.getBoundingClientRect();
+                // If skills section is in viewport
+                if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                    // Animate if not already animated
+                    if (!skillsAnimated) {
+                        animateSkillBars();
+                        skillsAnimated = true;
+                    }
+                } else if (rect.bottom < 0 || rect.top > window.innerHeight) {
+                    // Reset animation state when section leaves viewport
+                    skillsAnimated = false;
+                }
+            }
+            
+            // Soft skills animation trigger
+            if (softSkillsSection) {
+                const rect = softSkillsSection.getBoundingClientRect();
+                // If soft skills section is in viewport
+                if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                    // Animate if not already animated
+                    if (!softSkillsAnimated) {
+                        animateCircularProgress();
+                        softSkillsAnimated = true;
+                    }
+                } else if (rect.bottom < 0 || rect.top > window.innerHeight) {
+                    // Reset animation state when section leaves viewport
+                    softSkillsAnimated = false;
+                }
+            }
+        });
+    </script>
+    <div id="welcome-bubble" class="fixed bottom-24 right-20 
+        text-white text-sm p-3 rounded-xl shadow-lg 
+        z-50 transition-opacity duration-500 opacity-0 pointer-events-none 
+        transform translate-y-2 max-w-[220px] 
+        bg-gradient-to-r from-indigo-600 to-purple-600">
+        
+        <div class="flex justify-between items-start">
+            <p class="pr-2">
+                <i class="fas fa-robot text-white mr-1"></i> 
+                Hello!👋 Ask me about Lathashree's skills & projects!
+            </p>
+            
+            <button id="welcome-bubble-close" 
+                    class="text-gray-200 hover:text-white transition-colors cursor-pointer ml-auto">
+                <i class="fas fa-times text-xs"></i>
+            </button>
+        </div>
+        
+        <div class="absolute right-3 bottom-[-10px] w-0 h-0 
+            border-l-[10px] border-l-transparent 
+            border-r-[10px] border-r-transparent 
+            border-t-[10px] border-t-purple-600"></div>
+    </div>
+
+    <!-- Chatbot Toggle Button -->
+    <button id="chatbot-open-icon" class="fixed bottom-8 right-8 z-40 w-20 h-20 rounded-full bg-gradient-to-r from-cyan-600 to-violet-600 text-white shadow-2xl flex items-center justify-center hover:scale-110 transition-transform duration-300 pulse float">
+        <i class="fas fa-robot text-3xl"></i>
+        <span class="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full animate-ping"></span>
+        <span class="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full"></span>
+    </button>
+
+    <!-- Chatbot Container -->
+    <div id="chatbot-container" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-80 backdrop-blur-sm" id="chatbot-backdrop"></div>
+        
+        <div class="chat-container rounded-2xl w-11/12 max-w-2xl mx-auto z-50 flex flex-col h-[600px]">
+            <!-- Chat Header -->
+            <div class="chat-header p-5 rounded-t-2xl flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center mr-3 glow-effect">
+                        <i class="fas fa-robot text-cyan-600 text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-bold text-xl">Lathashree Assistant</h3>
+                        <p class="text-cyan-100 text-sm">AI Assistant • Online</p>
+                    </div>
+                </div>
+                <button id="minimize-chat" class="text-white hover:text-gray-200 text-xl mr-3">
+                    <i class="fas fa-window-minimize"></i>
+                </button>
+                <button id="close-chat" class="text-white hover:text-gray-200 text-xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- Chat Messages -->
+            <div id="chat-messages" class="flex-grow p-6 overflow-y-auto space-y-4 bg-gray-900">
+    
+    <div class="chat-message text-sm bot-message mr-auto">
+        <p class="p-4 rounded-xl bg-gray-800 text-gray-100">Hello there! 👋 I'm here to tell you about Lathashree. What would you like to know?</p>
+    </div>
+    
+    <div class="flex flex-wrap gap-3 mt-3">
+        <div class="suggestion-chip px-4 py-2 rounded-full text-sm text-cyan-400 border border-cyan-700 bg-gray-800 hover:bg-gray-700" data-question="introduction">Introduction</div>
+        <div class="suggestion-chip px-4 py-2 rounded-full text-sm text-cyan-400 border border-cyan-700 bg-gray-800 hover:bg-gray-700" data-question="education">Education</div>
+        <div class="suggestion-chip px-4 py-2 rounded-full text-sm text-cyan-400 border border-cyan-700 bg-gray-800 hover:bg-gray-700" data-question="skills">Skills</div>
+        <div class="suggestion-chip px-4 py-2 rounded-full text-sm text-cyan-400 border border-cyan-700 bg-gray-800 hover:bg-gray-700" data-question="projects">Projects</div>
+    </div>
+</div>
+            
+            <!-- Chat Input -->
+            <div class="p-4 border-t border-gray-700 bg-gray-800 rounded-b-2xl">
+                <div class="flex items-center">
+                    <input type="text" id="user-input" placeholder="Ask me anything about Lathashree..." 
+                        class="flex-grow bg-gray-700 text-gray-100 rounded-l-xl p-4 focus:outline-none focus:ring-2 focus:ring-cyan-500 border border-r-0 border-gray-600">
+                    <button id="send-btn" class="bg-gradient-to-r from-cyan-600 to-violet-600 hover:from-cyan-700 hover:to-violet-700 text-white p-4 rounded-r-xl border border-l-0 border-gray-600">
+                        <i class="fas fa-paper-plane text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Minimized Chat View -->
+    <div id="minimized-chat" class="fixed bottom-28 right-8 z-40 hidden">
+        <div class="bg-gradient-to-r from-cyan-600 to-violet-600 text-white p-4 rounded-xl shadow-lg max-w-xs">
+            <div class="flex items-center">
+                <i class="fas fa-robot mr-2"></i>
+                <p class="text-sm">Chat with me about Lathashree!</p>
+            </div>
+        </div>
+    </div>
+
+ <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // -----------------------------------------------------------------
+        // 1. CHATBOT ELEMENTS & SETUP (FIXED IDs)
+        // -----------------------------------------------------------------
+        const API_ENDPOINT = 'http://127.0.0.1:5000/chat'; 
+        
+        // Modal and Toggle Elements
+        const chatContainer = document.getElementById('chatbot-container');
+        const openIcon = document.getElementById('chatbot-open-icon');
+        const closeButton = document.getElementById('close-chat');
+        const minimizeButton = document.getElementById('minimize-chat');
+        const backdrop = document.getElementById('chatbot-backdrop');
+        
+        // Welcome Bubble Element
+        const welcomeBubble = document.getElementById('welcome-bubble');
+
+        // Core Chat Elements (NOW MATCHING YOUR HTML: user-input and send-btn)
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('user-input');        // <--- FIXED to 'user-input'
+        const sendButton = document.getElementById('send-btn');          // <--- FIXED to 'send-btn'
+
+        // -----------------------------------------------------------------
+        // 2. WELCOME BUBBLE LOGIC
+        // -----------------------------------------------------------------
+        const hideBubble = () => {
+            if (welcomeBubble) {
+                welcomeBubble.classList.remove('opacity-100', 'translate-y-0');
+                welcomeBubble.classList.add('opacity-0', 'pointer-events-none', 'translate-y-2');
+            }
+        };
+
+        if (welcomeBubble) {
+            const showBubble = () => {
+                welcomeBubble.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-2');
+                welcomeBubble.classList.add('opacity-100', 'translate-y-0');
+            };
+
+            setTimeout(showBubble, 1000); 
+            setTimeout(hideBubble, 7000); 
+            document.body.addEventListener('click', hideBubble, { once: true });
+        }
+        
+        // -----------------------------------------------------------------
+        // 3. MODAL OPEN/CLOSE LOGIC
+        // -----------------------------------------------------------------
+        
+        function openChat() {
+            if (chatContainer && openIcon) {
+                chatContainer.classList.remove('hidden'); 
+                openIcon.classList.add('hidden');         
+                if (chatInput) chatInput.focus();
+                if (welcomeBubble) hideBubble(); 
+            }
+        }
+
+        function closeChat() {
+            if (chatContainer && openIcon) {
+                chatContainer.classList.add('hidden');    
+                openIcon.classList.remove('hidden');      
+            }
+        }
+
+        // -----------------------------------------------------------------
+        // 4. CORE CHAT FUNCTIONS (ML Logic)
+        // -----------------------------------------------------------------
+        
+function addMessage(text, sender) { 
+    const chatMessages = document.getElementById('chat-messages');
+    if (!chatMessages) return;
+    
+    // Outer DIV for alignment and animation
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('chat-message', 'text-sm');
+
+    // Inner P tag for content, padding, color, and rounding
+    const messageP = document.createElement('p');
+    // Set padding (p-4) and the large rounding (rounded-2xl) here for all messages
+    messageP.classList.add('p-4', 'rounded-2xl'); 
+    
+    if (sender === 'user') {
+        messageDiv.classList.add('user-message', 'ml-auto');
+        
+        // Contrasting color for User: bg-cyan-600
+        messageP.classList.add('bg-cyan-600', 'text-white'); 
+    } else {
+        messageDiv.classList.add('bot-message', 'mr-auto');
+        
+        // Distinct dark color for Bot: bg-gray-900 (Blackish)
+        messageP.classList.add('bg-gray-900', 'text-gray-100');
+    }
+
+    messageP.innerHTML = text; 
+    messageDiv.appendChild(messageP);
+    
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+        function showTypingIndicator() {
+            if (!chatMessages) return;
+            const indicator = document.createElement('div');
+            indicator.id = 'typing-indicator';
+            indicator.classList.add('bot-message', 'mr-auto', 'chat-message');
+            indicator.innerHTML = `
+                <div class="typing-indicator">
+                    <span class="text-gray-400 mr-2 text-sm">Lathashree AI is thinking...</span>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            `;
+            chatMessages.appendChild(indicator);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const indicator = document.getElementById('typing-indicator');
+            if (indicator) {
+                indicator.remove();
+            }
+        }
+        
+        async function handleUserMessage(message) {
+            // CRITICAL FIX: Removed the check for 'chatForm' here
+            if (!message || !chatInput || chatInput.disabled) return; 
+            
+            addMessage(message, 'user');
+            chatInput.value = ''; 
+            chatInput.disabled = true;
+            showTypingIndicator(); 
+
+            try {
+                const response = await fetch(API_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: message })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Server returned status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                removeTypingIndicator();
+                addMessage(data.response, 'bot');
+                
+            } catch (error) {
+                console.error('API Error:', error);
+                removeTypingIndicator();
+                if (error.message.includes('Failed to fetch')) {
+                    addMessage("I cannot connect to the Python server. Please make sure **app.py** is running.", 'bot');
+                } else {
+                    addMessage(`Error: ${error.message}. Please check the server log.`, 'bot');
+                }
+            } finally {
+                chatInput.disabled = false;
+                chatInput.focus();
+            }
+        }
+
+        // -----------------------------------------------------------------
+        // 5. EVENT LISTENERS
+        // -----------------------------------------------------------------
+
+        // Toggle Listeners
+        if (openIcon) { openIcon.addEventListener('click', openChat); }
+        if (closeButton) { closeButton.addEventListener('click', closeChat); }
+        if (minimizeButton) { minimizeButton.addEventListener('click', closeChat); }
+        if (backdrop) { backdrop.addEventListener('click', closeChat); }
+
+        // SEND BUTTON LISTENER (Now using the correct ID 'send-btn')
+        if (sendButton) {
+            sendButton.addEventListener('click', function(e) {
+                e.preventDefault(); 
+                const message = chatInput.value.trim();
+                if (message) {
+                    handleUserMessage(message);
+                }
+            });
+        }
+
+        // ENTER KEY LISTENER (Now using the correct ID 'user-input')
+        if (chatInput) {
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault(); 
+                    const message = chatInput.value.trim();
+                    if (message) {
+                        handleUserMessage(message);
+                    }
+                }
+            });
+        }
+        
+        // Suggestion Chip Listeners
+        document.querySelectorAll('.suggestion-chip').forEach(chip => {
+            chip.addEventListener('click', function() {
+                const question = this.getAttribute('data-question');
+                handleUserMessage(question);
+            });
+        });
+
+        // "More About Me" button click handler
+        document.getElementById('more-about-me-button').addEventListener('click', function() {
+            document.getElementById('about').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    });
+</script>
+           
+           
+</body>
+</html>

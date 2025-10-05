@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lathashree's Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 1rem;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+        }
+        .resume-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 950px;
+            background-color: #fff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .resume-header {
+            background-color: #1f2937;
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem 1rem 0.7rem 1rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        .resume-header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: 0.5rem;
+            line-height: 1;
+            margin: 0;
+        }
+        .resume-header h2 {
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin-top: 0.5rem;
+            color: #c0c0c0;
+        }
+        /* Thin white horizontal line after header */
+        .thin-white-line {
+            width: 100%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            margin: 0;
+        }
+        .content-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        .left-column {
+            flex: 1;
+            background-color: #1f2937;
+            color: #fff;
+            padding: 1.5rem;
+            min-width: 250px;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .right-column {
+            flex: 2.5;
+            padding: 1.5rem;
+            background-color: #ffffff;
+            color: #333;
+        }
+        .section {
+            margin-bottom: 1.5rem;
+        }
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .section-title.right {
+            color: #2c3e50;
+            border-bottom: 1px solid #c0c0c0;
+        }
+        .contact-info p {
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .contact-info svg {
+            width: 1rem;
+            height: 1rem;
+            fill: #fff;
+        }
+        .contact-info a {
+            color: #fff;
+            text-decoration: underline;
+        }
+        .skills-list {
+            list-style: none;
+            padding: 0;
+        }
+        .skills-list li {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .skills-list li span {
+            font-weight: 400;
+        }
+        .skills-list ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 0.5rem;
+        }
+        .skills-list ul li {
+            display: inline-block;
+            background-color: #4a5a6a;
+            color: #fff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            margin: 0.15rem;
+        }
+        .sub-heading {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+        .sub-heading span {
+            font-weight: 400;
+            color: #666;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+        .summary p, .career-objective p {
+            line-height: 1.6;
+        }
+        .experience-item,
+        .project-item,
+        .education-item {
+            margin-bottom: 1rem;
+            border: none; /* Remove lines between projects */
+        }
+        .experience-item h4,
+        .project-item h4,
+        .education-item h4 {
+            margin: 0;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        .experience-item p,
+        .project-item p,
+        .education-item p {
+            margin: 0.25rem 0 0 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .experience-item ul,
+        .project-item ul {
+            margin: 0.5rem 0 0 0;
+            padding-left: 1.5rem;
+            list-style-type: disc;
+        }
+        .experience-item ul li,
+        .project-item ul li {
+            margin-bottom: 0.25rem;
+            line-height: 1.4;
+        }
+        .education-item h4 {
+            margin: 0;
+        }
+        .education-item p {
+            margin: 0;
+        }
+        .divider {
+            border-top: 1px solid #c0c0c0;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <div class="resume-header">
+            <h1>LATHASHREE</h1>
+            
+        </div>
+        <hr class="thin-white-line" />
+        <div class="content-container">
+            <div class="left-column">
+                <div class="section contact">
+                    <h3 class="section-title">CONTACT</h3>
+                    <div class="contact-info">
+                        <p>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2Zm0 18a8 8 0 0 1-8-8a8 8 0 0 1 8-8a8 8 0 0 1 8 8a8 8 0 0 1-8 8Z"/>
+                                <path d="M12 11.5c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5s-1.12-2.5-2.5-2.5Z"/>
+                            </svg>
+                            lathashreeb07@gmail.com
+                        </p>
+                        <p>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M16 10c0 2.21-1.79 4-4 4s-4-1.79-4-4s1.79-4 4-4s4 1.79 4 4Zm-1.5 0a2.5 2.5 0 1 0-5 0a2.5 2.5 0 0 0 5 0Zm4.5 10v-1a5.9 5.9 0 0 0-4.66-5.83A6 6 0 0 0 12 8a6 6 0 0 0-4.34 2.17A5.9 5.9 0 0 0 3 19v1h18v-1Zm-1.5 0v-1A4.5 4.5 0 0 1 12 15.5a4.5 4.5 0 0 1-4.5 4.5Z"/>
+                            </svg>
+                            7899016046
+                        </p>
+                        <p>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5a2.5 2.5 0 1 1 0-5a2.5 2.5 0 0 1 0 5Z"/>
+                            </svg>
+                            Mangalore, India
+                        </p>
+                        <p>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff"><path d="M12 0C5.372 0 0 5.373 0 12c0 5.086 3.163 9.402 7.548 11.086.552.101.75-.24.75-.533 0-.263-.01-1.14-.015-2.07-3.065.666-3.715-1.477-3.715-1.477-.5-1.27-1.222-1.608-1.222-1.608-.999-.683.076-.669.076-.669 1.105.078 1.686 1.135 1.686 1.135.982 1.683 2.576 1.197 3.204.916.099-.712.385-1.198.7-1.474-2.447-.278-5.018-1.22-5.018-5.434 0-1.2.428-2.183 1.132-2.952-.114-.278-.49-1.396.108-2.91 0 0 .924-.296 3.03 1.13a10.6 10.6 0 015.504 0c2.105-1.427 3.028-1.13 3.028-1.13.598 1.514.222 2.632.108 2.91.707.77 1.13 1.752 1.13 2.952 0 4.225-2.575 5.153-5.027 5.421.395.34.75 1.008.75 2.03 0 1.466-.013 2.647-.013 3.007 0 .294.195.639.75.53C20.838 21.398 24 17.084 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                            <a href="https://github.com/latha-shree" target="_blank" rel="noopener noreferrer" style="color:white; text-decoration: underline;">github.com/lathashreeuser</a>
+                        </p>
+                        <p>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 24 24"><path d="M22.23 0H1.77A1.772 1.772 0 000 1.77v20.46A1.77 1.77 0 001.77 24h20.46A1.77 1.77 0 0024 22.23V1.77A1.77 1.77 0 0022.23 0zM7.55 20.45H4.22v-9.38h3.33v9.38zM5.89 9.42c-1.07 0-1.93-.87-1.93-1.94a1.93 1.93 0 013.86 0c0 1.07-.86 1.94-1.93 1.94zM20.45 20.45h-3.31v-4.7c0-1.12-.02-2.55-1.55-2.55-1.56 0-1.8 1.22-1.8 2.48v4.77h-3.31v-9.38h3.18v1.28h.05c.44-.83 1.5-1.7 3.08-1.7 3.29 0 3.9 2.17 3.9 5v4.8z"/></svg>
+                            <a href="https://www.linkedin.com/in/lathashree-bg-17a778283" target="_blank" rel="noopener noreferrer" style="color:white; text-decoration: underline;">linkedin.com/in/lathashreeuser</a>
+                        </p>
+                        <!--<p style="opacity: 0.7; font-style: italic; font-size: 0.9rem; margin-top: 0.5rem;">
+                            Portfolio link coming soon...
+                        </p>-->
+                    </div>
+                </div>
+
+                <div class="section skills">
+                    <h3 class="section-title">SKILLS</h3>
+                    <ul class="skills-list">
+                        <li>
+                            <p class="sub-heading">Languages</p>
+                            <ul>
+                                <li>Python</li>
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>JavaScript</li>
+                                <li>SQL</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <p class="sub-heading">Frameworks/Tools</p>
+                            <ul>
+                                <li>TensorFlow</li>
+                                <li>Keras</li>
+                                <li>Flask</li>
+                                <li>OpenCV</li>
+                                <li>NLTK</li>
+                                <li>Bootstrap</li>
+                                <li>YOLOV5</li>
+                                <li>Tkinter</li>
+                                <li>MySQL</li>
+                                <li>XAMPP</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <p class="sub-heading">Developer Tools</p>
+                            <ul>
+                                <li>Google Colab</li>
+                                <li>VS Code</li>
+                                <li>PyCharm</li>
+                                <li>MySQL Workbench</li>
+                                <li>XAMPP</li>
+                                <li>Git</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <p class="sub-heading">Libraries</p>
+                            <ul>
+                                <li>Matplotlib</li>
+                                <li>Seaborn</li>
+                                <li>EasyOCR</li>
+                                <li>SpeechRecognition</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="section languages">
+                    <h3 class="section-title">LANGUAGES</h3>
+                    <ul class="skills-list">
+                        <li>
+                            <ul>
+                                <li>English</li>
+                                <li>Hindi</li>
+                                <li>Konkani</li>
+                                <li>Kannada</li>
+                                <li>Tulu</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="section interests">
+                    <h3 class="section-title">INTERESTS</h3>
+                    <ul class="skills-list">
+                        <li>
+                            <ul>
+                                <li>Reading</li>
+                                <li>Writing</li>
+                                <li>Graphic Design</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="right-column">
+                <!-- Replacing Summary with Career Objective -->
+                <div class="section career-objective">
+                    <h3 class="section-title right">CAREER OBJECTIVE</h3>
+                    <p>
+                       Computer Science graduate with a strong interest in Machine Learning, Deep Learning, and Natural Language Processing, eager to apply analytical and modeling skills to extract insights from data. Looking for opportunities to contribute to data-driven projects while continuing to learn and grow in the field of AI and predictive analytics.
+                    </p>
+                </div>
+
+                <!-- Replaced Experience with Internships -->
+                <div class="section internships">
+                    <h3 class="section-title right">INTERNSHIPS</h3>
+                    <div class="experience-item">
+                        <h4>Data Science Intern, LPoint</h4>
+                        <p>Mangalore | Oct 2024 - Jul 2025</p>
+                        <ul>
+                            <li>Developed and deployed ML models for face recognition, emotion detection, and spam classification using Python, TensorFlow, and OpenCV.</li>
+                            <li>Built real-time video/image detection systems for PPE detection, traffic congestion, and license plate extraction.</li>
+                            <li>Developed full-stack web apps using Flask, SQLite, and Bootstrap with real-time prediction UI.</li>
+                            <li>Constructed multi-modal spam detection systems for text, image, audio, and email spam.</li>
+                            <li>Built dashboards with Matplotlib and Seaborn for real-time data visualization and sentiment analysis.</li>
+                            <li>Used Git for version control, API integration, and deployment pipelines.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Projects section changes technology to Development Tools, no dividing lines -->
+                <div class="section projects">
+                    <h3 class="section-title right">PROJECTS</h3>
+                    <div class="project-item">
+                        <h4>SpamShield Technologies</h4>
+                        <p><strong>Development Tools:</strong> Flask, TensorFlow, NLTK, Bootstrap</p>
+                        <ul>
+                            <li>Multi-modal spam detection app (text, image, audio, CSV) achieving 98.6% accuracy.</li>
+                            <li>Built a real-time dashboard with prediction logs and visual metrics.</li>
+                        </ul>
+                    </div>
+                    <div class="project-item">
+                        <h4>Construction Site PPE Detection System</h4>
+                        <p><strong>Development Tools:</strong> YOLOV5, OpenCV</p>
+                        <ul>
+                            <li>Real-time video detection of safety equipment on workers, achieving 90% compliance accuracy.</li>
+                        </ul>
+                    </div>
+                    <div class="project-item">
+                        <h4>Facial Recognition Attendance System</h4>
+                        <p><strong>Development Tools:</strong> OpenCV, Tkinter</p>
+                        <ul>
+                            <li>Automated attendance logging system with face detection for 20 users using SQLite.</li>
+                        </ul>
+                    </div>
+                    <div class="project-item">
+                        <h4>Traffic Congestion Detection</h4>
+                        <p><strong>Development Tools:</strong> OpenCV, Python</p>
+                        <ul>
+                            <li>Estimated traffic density from CCTV frames for early congestion alerts.</li>
+                        </ul>
+                    </div>
+                    <div class="project-item">
+                        <h4>Blood Bank Management System</h4>
+                        <p><strong>Development Tools:</strong> PHP, MySQL, XAMPP</p>
+                        <ul>
+                            <li>CRUD-based web application to manage donor, recipient, and stock data.</li>
+                        </ul>
+                    </div>
+                    <div class="project-item">
+                        <h4>AI-Based Interactive Interview System</h4>
+                        <p><strong>Development Tools:</strong> Python, OpenCV, SpeechRecognition</p>
+                        <ul>
+                            <li>Voice and facial-response based real-time QA simulation system.</li>
+                        </ul>
+                    </div>
+                    <div class="project-item">
+                        <h4>Water Quality Analysis</h4>
+                        <p><strong>Development Tools:</strong> Google Colab, Python</p>
+                        <ul>
+                            <li>Performed EDA and impurity classification on 50 features from water quality datasets.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Moved Education into main (right) section -->
+                <div class="section education">
+                    <h3 class="section-title right">EDUCATION</h3>
+                    <div class="education-item">
+                        <h4>Master of Computer Applications</h4>
+                        <p>St Joseph Engineering College, Mangalore</p>
+                        <p>2025 | 8.22 CGPA</p>
+                    </div>
+                    <div class="education-item">
+                        <h4>Bachelor of Computer Applications</h4>
+                        <p>Alva's College, Moodbidri</p>
+                        <p>2025 | 8.34 CGPA</p>
+                    </div>
+                    <div class="education-item">
+                        <h4>Pre University College</h4>
+                        <p>Jain PU College, Moodbidri</p>
+                        <p>2020 | 88.63%</p>
+                    </div>
+                    <div class="education-item">
+                        <h4>SSLC</h4>
+                        <p>Jain High School, Moodbidri</p>
+                        <p>2018 | 83.33%</p>
+                    </div>
+                </div>
+
+                <!-- Certifications unchanged -->
+                <div class="section certifications">
+                    <h3 class="section-title right">CERTIFICATIONS</h3>
+                    <ul>
+                        <li>Data Science Foundation</li>
+                        <li>Functions in Python</li>
+                        <li>Visual Graphics in C</li>
+                        <li>Machine Learning with Python</li>
+                        <li>React Native</li>
+                        <li>AI with Python - Deep Neural Networks</li>
+                        <li>AWS Cloud Training Workshop</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
