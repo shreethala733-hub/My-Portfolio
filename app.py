@@ -105,9 +105,12 @@ Social Media:
 
 """
 
+import os
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+
 @app.route('/')
 def home():
-    return send_file("portfolio.html")  
+    return render_template("portfolio.html")
 #--------------------------------------
 # 3. API ROUTE: This is where the ML concept is applied!
 # ----------------------------------------------------------------------
@@ -233,6 +236,7 @@ if __name__ == "__main__":
     load_dotenv()
 
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+
 
 
 
