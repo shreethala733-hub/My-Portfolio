@@ -5,32 +5,14 @@ from google import genai
 from google.genai import types
 
 # ----------------------------------------------------------------------
-# 1. FLASK SETUP
+# 1️⃣ FLASK SETUP
 # ----------------------------------------------------------------------
-
 app = Flask(__name__)
 CORS(app)
 
 # ----------------------------------------------------------------------
-# 2. GEMINI CLIENT INITIALIZATION
+# 2️⃣ PORTFOLIO CONTEXT
 # ----------------------------------------------------------------------
-
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
-
-client = None
-if GEMINI_API_KEY:
-    try:
-        client = genai.Client()
-        print("✅ Gemini client initialized successfully.")
-    except Exception as e:
-        print(f"❌ Error initializing Gemini client: {e}")
-else:
-    print("❌ GEMINI_API_KEY not set in environment variables.")
-
-# ----------------------------------------------------------------------
-# 3. PORTFOLIO CONTEXT
-# ----------------------------------------------------------------------
-
 PORTFOLIO_CONTEXT = """
 You are a helpful, professional, and friendly AI chatbot representing a computer science professional named Lathashree.
 Your goal is to answer questions about Lathashree's portfolio, skills, and background using the information below.
@@ -100,23 +82,33 @@ Social Media:
  - GitHub: https://github.com/latha-shree
  - LinkedIn: https://www.linkedin.com/in/lathashree-bg-17a778283
  - Instagram: https://www.instagram.com/b_e_i_n_g_s_h_r_e_e
-
 """
 
 # ----------------------------------------------------------------------
-# 4. ROUTES
+# 3️⃣ ROUTES
 # ----------------------------------------------------------------------
 
 @app.route('/')
 def home():
     return render_template("portfolio.html")
 
-
 @app.route('/chat', methods=['POST'])
 def chat():
-    if not client:
-        return jsonify({"response": "Chatbot is temporarily offline. GEMINI_API_KEY not set or invalid."}), 200
+    """Handles chatbot messages"""
+    # Fetch API key every request (ensures Render loads it)
+    GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
+    if not GEMINI_API_KEY:
+        return jsonify({"response": "Chatbot is temporarily offline. GEMINI_API_KEY not set."}), 200
+
+    # Initialize Gemini client safely
+    try:
+        client = genai.Client()
+    except Exception as e:
+        print(f"❌ Error initializing Gemini client: {e}")
+        return jsonify({"response": "Chatbot is temporarily offline. Failed to initialize Gemini client."}), 200
+
+    # Handle user message
     try:
         data = request.get_json()
         user_message = data.get('message', '').strip()
@@ -143,11 +135,11 @@ def chat():
 
 @app.route('/check_key')
 def check_key():
+    """Debug route — remove after testing"""
     return f"GEMINI_API_KEY: {os.environ.get('GEMINI_API_KEY')}"
 
 # ----------------------------------------------------------------------
-# 5. RUN APP
+# 4️⃣ RUN APP
 # ----------------------------------------------------------------------
-
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
