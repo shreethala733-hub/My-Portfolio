@@ -141,6 +141,10 @@ def chat():
         print(f"❌ Chat error: {e}")
         return jsonify({"response": "Sorry, the chatbot encountered an error. Please try again later."})
 
+@app.route('/check_key')
+def check_key():
+    return f"GEMINI_API_KEY: {os.environ.get('GEMINI_API_KEY')}"
+
 # ----------------------------------------------------------------------
 # 5. RUN APP
 # ----------------------------------------------------------------------
