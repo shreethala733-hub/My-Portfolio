@@ -109,14 +109,11 @@ def home():
 @app.route('/chat', methods=['POST'])
 def chat():
     if not client:
-        print("⚠️ Gemini client not initialized.")
         return jsonify({"response": "Chatbot is temporarily offline. Failed to initialize Gemini client."}), 200
 
     try:
         data = request.get_json()
         user_message = data.get('message', '').strip()
-        print(f"📩 Received message: {user_message}")
-
         if not user_message:
             return jsonify({"response": "Please type a message to get a response."})
 
@@ -125,23 +122,17 @@ def chat():
             temperature=0.6
         )
 
-        print("🚀 Sending request to Gemini...")
         response = client.models.generate_content(
-            model="gemini-1.5-flash",
+            model="gemini-2.0-flash",  # ✅ updated model name
             contents=[user_message],
             config=config
         )
-        print("✅ Gemini response received successfully.")
-
-        # Debug what Gemini returned
-        print(f"🧠 Full Gemini response: {response}")
 
         return jsonify({"response": response.text})
 
     except Exception as e:
         print(f"❌ Chat error: {e}")
         return jsonify({"response": f"Sorry, the chatbot encountered an error: {str(e)}"})
-
 
 @app.route('/check_key')
 def check_key():
