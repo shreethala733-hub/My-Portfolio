@@ -151,83 +151,6 @@ def chat():
 
 
 
-# ----------------------------------------------------------------------
-# 5. Lead Capture & Email Logic
-# ----------------------------------------------------------------------
-
-# NOTE: SENDER_EMAIL and SENDER_PASSWORD must be available in the global scope, 
-# loaded from the .env file using the dotenv library (as instructed in previous steps).
-
-def send_log_email(name, email, timestamp):
-    # Retrieve the credentials from the environment variables (loaded via dotenv)
-    SENDER_EMAIL = os.environ.get("SENDER_EMAIL") 
-    SENDER_PASSWORD = os.environ.get("SENDER_PASSWORD")
-    RECEIVER_EMAIL = SENDER_EMAIL # Assuming you send it to yourself
-
-    if not SENDER_EMAIL or not SENDER_PASSWORD:
-        print("\n🚨 ERROR: Email credentials (SENDER_EMAIL or SENDER_PASSWORD) are NOT SET in environment variables. Email log failed.\n")
-        return
-
-    msg = EmailMessage()
-    msg['Subject'] = f"NEW CV VIEW LEAD: {name}"
-    msg['From'] = SENDER_EMAIL
-    msg['To'] = RECEIVER_EMAIL
-    
-    msg.set_content(f"""
-    Lathashree's CV has been viewed!
-
-    #--------------------------------------
-    Name: {name}
-    Email: {email}
-    Time: {timestamp}
-    #--------------------------------------
-    
-    This is a confirmed lead from your portfolio.
-    """)
-
-    try:
-        # Use Gmail's SMTP server (change if using a different provider)
-        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-            smtp.login(SENDER_EMAIL, SENDER_PASSWORD)
-            smtp.send_message(msg)
-        # Use a consistent print format for better logging clarity
-        print(f"--- EMAIL LOG SENT SUCCESSFULLY: To {RECEIVER_EMAIL} for lead {email} ---")
-        
-    except smtplib.SMTPAuthenticationError:
-        print("\n🚨 CRITICAL ERROR: Email Login Failed! Check your SENDER_PASSWORD (App Password) and ensure 'Less Secure App Access' is handled for your email.\n")
-    except Exception as e:
-        # General error during email sending
-        print(f"ERROR SENDING EMAIL: {e}")
-
-
-@app.route('/log_download', methods=['POST'])
-def log_download():
-    # Ensure all necessary imports are available (request, jsonify, datetime, os)
-    # The 'app' object must be initialized globally (app = Flask(__name__)).
-    
-    try:
-        data = request.get_json()
-        name = data.get('name', 'N/A')
-        email = data.get('email', 'N/A')
-        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-        # Input Validation (Minor improvement for robustness)
-        if not name or not email:
-            return jsonify({"message": "Name and Email are required."}), 400
-
-        # 1. Log to the console (for debugging/temporary check)
-        print(f"--- LEAD CAPTURED --- [{timestamp}] Name: {name}, Email: {email}")
-
-        # 2. SEND EMAIL (Creates a permanent record in your inbox)
-        send_log_email(name, email, timestamp)
-        
-        # Return success (the JavaScript will handle opening the CV)
-        return jsonify({"message": "Lead captured and email notification sent."}), 200
-
-    except Exception as e:
-        print(f"Error processing log request: {e}")
-        # Return a 500 status code for internal server error
-        return jsonify({"message": "Server error while processing data."}), 500
 
 
 if __name__ == "__main__":
@@ -236,6 +159,7 @@ if __name__ == "__main__":
     load_dotenv()
 
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+
 
 
 
